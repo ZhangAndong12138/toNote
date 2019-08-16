@@ -48,5 +48,6 @@ class ToNote(Resource):
             return {"info" : "Got no idea what happend."}, 500
 
     def put(self):
-        pass
+        parser = reqparse.RequestParser()
+        
 
