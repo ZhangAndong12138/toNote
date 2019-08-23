@@ -28,3 +28,7 @@ class NoteDao(object):
     def delete_one(self, id):
         return self.collection.delete_one({"_id" : ObjectId(id)}).deleted_count
 
+    def update_one(self, id, data):
+        return self.collection.update_one({"_id" : ObjectId(id)}, {"$set": data}).modified_count
+
+

@@ -49,5 +49,26 @@ class ToNote(Resource):
 
     def put(self):
         parser = reqparse.RequestParser()
+        parser.add_argument('id', type=str)
+        parser.add_argument('name', type=str)
+        parser.add_argument('content', type=str)
+        parser.add_argument('type', type=str)
+        parser.add_argument('keyword', type=str)
+        args = parser.parse_args()
+        id = args['id']
+        data = {
+            "name" : args['name'],
+            "content" : args['content'],
+            "type" : args['type']
+        }
+        modified_count = self.dao.update_one(id, data)
+        if modified_count == 1:
+            return {"info" : "A note has been updated."}, 200
+        elif modified_count == 0:
+            return {"info" : "note with id:["+id+"] does not exists."}, 200
+        else:
+            return {"info" : "Got no idea what happend."}, 500
+
+
         
 
