@@ -49,16 +49,17 @@ class ToNote(Resource):
 
     def put(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('id', type=str)
+        parser.add_argument('_id', type=str)
         parser.add_argument('name', type=str)
         parser.add_argument('content', type=str)
         parser.add_argument('type', type=str)
         parser.add_argument('keyword', type=str)
         args = parser.parse_args()
-        id = args['id']
+        id = args['_id']
         data = {
             "name" : args['name'],
             "content" : args['content'],
+            "keyword" : args['keyword'].split(','),
             "type" : args['type']
         }
         modified_count = self.dao.update_one(id, data)
