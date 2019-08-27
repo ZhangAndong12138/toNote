@@ -69,7 +69,3 @@ class ToNote(Resource):
             return {"info" : "note with id:["+id+"] does not exists."}, 200
         else:
             return {"info" : "Got no idea what happend."}, 500
-
-
-        
-

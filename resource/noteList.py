@@ -7,8 +7,14 @@ import datetime
 class NoteList(Resource):
     dao = NoteDao()
     def get(self):
-        result = self.dao.find_many(10)
-        return result
+        parser = reqparse.RequestParser()
+        parser.add_argument('word', type=str)
+        args = parser.parse_args()
+        word = args['word']
+        if word == '':
+            return self.dao.find_many(10)
+        else : 
+            return self.dao.find_by_word(word)
 
     
     
