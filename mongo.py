@@ -2,7 +2,7 @@ import pymongo
 from bson.objectid import ObjectId
 
 class NoteDao(object):
-    client = pymongo.MongoClient("mongodb://xx.xx.xx.xxx:27017/")
+    client = pymongo.MongoClient("mongodb://47.93.23.130:27017/")
     db = client["toNote"]
     col = db["note"]
     collection = col
